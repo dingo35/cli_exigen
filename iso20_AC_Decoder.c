@@ -19,7 +19,7 @@
   *
   **/
 #include <stdint.h>
-
+#include <stdio.h>
 #include "exi_basetypes.h"
 #include "exi_types_decoder.h"
 #include "exi_basetypes_decoder.h"
@@ -4417,6 +4417,7 @@ static int decode_iso20_ac_DisplayParametersType(exi_bitstream_t* stream, struct
                             if (error == 0)
                             {
                                 DisplayParametersType->PresentSOC = (int8_t)value;
+                                printf("DINGO: PresentSOC=%i.\n", DisplayParametersType->PresentSOC);
                                 DisplayParametersType->PresentSOC_isUsed = 1u;
                             }
                         }
@@ -17196,6 +17197,7 @@ int decode_iso20_ac_exiDocument(exi_bitstream_t* stream, struct iso20_ac_exiDocu
         error = exi_basetypes_decoder_nbit_uint(stream, 6, &eventCode);
         if (error == 0)
         {
+            printf("DINGO: evetCode=%u.\n", eventCode);
             switch (eventCode)
             {
             case 0:
